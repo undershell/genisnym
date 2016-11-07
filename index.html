@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Islamic Nickname Generator</title>
+
+<style type="text/css">
+#main {
+
+}
+button {
+	border-radius: 4px;
+	border: thin solid #F0E020;
+	padding: 5px;
+	background-color: #F8F094;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: bold;
+	color: #663300;
+	width: 100px;
+}
+
+button:hover {
+	border: thin solid #FFCC00;
+	background-color: #FCF9D6;
+	color: #996633;
+	cursor: pointer;
+}
+button:active {
+	border: thin solid #99CC00;
+	background-color: #F5FFD2;
+	color: #669900;
+	cursor: pointer;
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script> 
+
+$(document).ready(function () {
+
+	
+	function generate() {
+		
+		seperator = $("input[name='joint']:checked").val();
+		gender = $("input[name='gender']:checked").val();
+		lang = $("input[name='lang']:checked").val();
+	
+		generated = [];
+		
+		if(lang == "en"){
+			if($("input[name='type0']").is(':checked'))
+				generated.push(random([
+						random(data["en"][0][0])+seperator+random(data["en"][0][gender]),
+						random(data["en"][2][2])+seperator+"the"+seperator+random(data["en"][0][0]),
+						random(data["en"][2][3])+seperator+"the"+seperator+random(data["en"][0][0]),
+					]));
+					
+			if($("input[name='type1']").is(':checked'))
+				generated.push(random([
+					random(data["en"][1][gender]) + seperator + random(data["en"][2][2]),
+					random(data["en"][1][gender]) + seperator + random(data["en"][2][3]),				
+					]));
+					
+			if($("input[name='type2']").is(':checked'))
+				generated.push(random([
+					random(data["en"][2][gender]),
+					]));
+	
+			if($("input[name='type3']").is(':checked'))
+				generated.push(random([
+						random(data["en"][3][0])+"'s "+random(data["en"][3][gender]),
+						random(data["en"][3][gender])+" of "+random(data["en"][3][0]),
+					]));
+	
+			if($("input[name='type4']").is(':checked'))
+				generated.push(random([
+						random(data["en"][4][0])+"'s "+random(data["en"][4][1]),
+						random(data["en"][4][1])+" of "+random(data["en"][4][0]),
+						random(data["en"][4][2])+seperator+random(data["en"][4][0]),
+						"ask Allah for "+random(data["en"][4][0]),
+					]));
+
+			if($("input[name='type5']").is(':checked'))
+				generated.push(random([
+					random(data["en"][5][gender]),
+					//abu
+					]));
+					
+			if($("input[name='type6']").is(':checked'))
+				generated.push(random([
+					random(data["en"][6][gender]),
+					//umm
+					]));
+					
+		}else if(lang == "ar"){
+			
+			generated.push(random([
+						random(data["ar"][0][gender])+seperator+random(data["ar"][0][0]),
+						random(data["ar"][1][gender]) + seperator + random(data["ar"][1][0]),
+					]));
+			
+		}else if(lang == "fr"){
+			
+			generated.push(random([
+					random(data["fr"][0][gender]) + seperator + random(data["fr"][1][gender]),
+					random(data["fr"][1][gender]),
+					]));
+			
+		}
+
+		return random(generated);
+	}
+	
+	
+	$('#generate').click(function() {
+		$('#generated').text(generate());
+	});
+	
+
+
+	function random(list) {
+	    var i = Math.floor(Math.random() * list.length);
+	    return list[i];
+	}
+	
+	var data = {
+	
+	"fr" : [	
+		[
+			[], // Proper nouns
+			["Abou", "Oumm", "Ibn", "Oum", "Bint"],
+			["Abou", "Ibn"],	// male
+			["Oum", "Bint"],	// female		
+		],
+		[
+			[], // Adjective
+			["Mohammad", "Omar", "Bakr", "Khalid", "Al-aswad", "Asad", "Fahd", "Hafsa", "Aisha", "Fatima", "Amatoullah", "Amatourrahmen"], // neutral
+			["Mohammad", "Omar", "Bakr", "Khalid", "Al-aswad", "Asad", "Fahd"], // male
+			["Hafsa", "Aisha", "Fatima", "Amatoullah", "Amatourrahmen"],	// female
+		],
+		
+	],
+	
+	"ar" : [ 
+		[
+			["الإيمان", "الحق", "العلماء", "العلم", "الهدى"], // Objectives
+			["على خطى", "مع"],	// neutral
+			["محبّ", "طالب", "سائِل"], // male
+			["محبّة", "طالبة", "سائِلة"],	// female
+		],		
+		[
+			["الله", "الرحمن", "الرحيم", "الملك", "القدوس", "السلام", "المؤمن", "المهيمن", "العزيز", "الجبار", "المتكبر", "الخالق", "البارئ", "المصور", "الأول", "الآخر", "الظاهر", "الباطن", "السميع", "البصير", "المولى", "النصير", "العفو", "القدير", "اللطيف", "القدير", "الجميل", "الحييّ", "الكبير", "المتعال", "الواحد", "القهار", "الحق", "المبين", "العلي", "العظيم", "الغني", "الصمد", "الغفور", "الودود", "المجيد", "الرزاق", "الوهاب"], // Names & attributes of Allah
+			["عبد", "عبيد", "عابد", "المستعين بـ", "أمة", "عابدة"], // neutral
+			["عبد", "عبيد",  "عابد", "المستعين بـ"], 
+			["أمة", "عابدة"],
+		],	
+	],
+	
+	
+	"en" : [ 
+		
+		/* Option 0 : Compound names : adjective + name */
+		[
+			["adamant", "adroit", "brave", "first", "second", "guided", "sound", "patient", "merciful", "humble", "modest", "remembering", "flamboyant", "pure", "true"], // Adjective
+			["warrior", "knight", "man", "believer", "muslim", "heart", "mind"], // neutral
+			["man", "boy"],	// male
+			["woman", "girl"],	// female
+		],
+		
+		/* Option 1 Kuniya : (abu/ibn/umm/bint/ son of daughter of / wife of? husband of ? / use plural as neutrral ?) + proper name */	
+		[
+			[], // Proper nouns
+			["Abo", "Omm", "Abu", "Ibn", "Umm", "Bint", "bni"],
+			["Aba", "Abu", "Abo", "Ibn", "Ibn-a"],	// male
+			["Umma", "Omma", "Ummo", "Ommo", "Omm", "Umm", "Bint", "Bint-a"],	// female
+		],
+		
+		/* Option 2 Arabic : adjectives */	
+		[
+			[], // Adjective
+			["aTTayr", "Maa", "Samaa", "3abir", "Talibu l-jannah", "syoof"], // neutral
+			["Mohammad", "Omar", "Bakr", "Khalid", "Al-aswad", "Asad", "Fahd", "Ayman"], // male
+			["Hafsa", "Aisha", "Fatima", "Khadija", "Amatullah", "Amaturrahmen"],	// female
+		],
+		
+		/* Option 3 : X of Y - Y's X  */	
+		[
+			["Allah", "Arrahman", "Al-Qawiyy", "", "The Compassionate", "The Merciful", "The Exceedingly Merciful", "The Supreme", "The Bestower", " The Exalter", "The All Praiseworthy", "The Sovereign", "The Almighty", "The Victory Giver", "The Omniscient", "The All Knowing", ],
+			["servant", "adorant", "man", "creation", "creature"], // neutral slave
+			["man" ],	// male
+			[""],	// female
+		],
+		
+		/* Option 4  */	
+		[
+			["Guidance", "Peace", "Truth", "Haqq", "Mercy", "Forgiveness", "Islam", "Verity", "Sincerity", "Remembraunce", "Purity", "The Book", "The Torch"],
+			["seeker", "searcher", "man", "path", "bearer"], // neutral
+			["seek", "search", "follow", "ask"], // neutral
+		],
+		
+		/* Option 5  */	
+		[
+			[],
+			["Adam", "Aadam", "Ibrahim", "Harun", "Dawood", "Dawud", "Ilias", "Ilyas", "Idris", "Hood", "Hud", "ishaq", "Ismail", "Moses", "Yaqub", "Shuaib", "Isa", "Ayyub", "Yahya", "Yusuf", "Younes", "LuT", "NuH", "Muhammad", "Musa", "Sulayman", "Sulaiman", "Zakariyyah", "Meriam", "Asia"],
+			["Adam", "Aadam", "Ibrahim", "Harun", "Dawood", "Dawud", "Ilias", "Ilyas", "Idris", "Hood", "Hud", "ishaq", "Ismail", "Moses", "Yaqub", "Shuaib", "Isa", "Ayyub", "Yahya", "Yusuf", "Younes", "LuT", "NuH", "Muhammad", "Musa", "Sulayman", "Sulaiman", "Zakariyyah"],
+			["Meriam", "Asia"]
+			//["", "", "", "", ""]
+		],
+
+		[
+			[],
+			["Usama", "Jabir", "Hamza", "Aqeel", "Abbad", "bishr", "Ubaydah", "Abbas", "Umar", "Omar", "Sufyan", "Bilal", "Ali", "Hassan", "Hussain", "Uthman", "Othman", "Julaybib", "Miqdad", "Rumaysa", "Hind", "Al-Khansa", "Asmaa",],
+			["Usama", "Jabir", "Hamza", "Aqeel", "Abbad", "bishr", "Ubaydah", "Abbas", "Umar", "Omar", "Sufyan", "Bilal", "Ali", "Hassan", "Hussain", "Uthman", "Othman", "Julaybib", "Miqdad",],
+			["Rumaysa", "Hind", "Al-Khansa", "Asmaa", ],
+		],
+		
+				
+	]
+	};
+
+	setInterval(function(){
+		$('#randomized').text(generate());
+	}, 1000);
+
+
+});
+</script>
+
+
+</head>
+
+<body>
+	
+	
+<div id="main" style="width:500px; margin: 0 auto;">
+	
+	<h1>
+		<center>
+			Islamic Nickname Generator
+		</center>
+	</h1>
+	
+	<hr>
+	<b>Type : </b><br>
+		<input type="checkbox" name="type0" value="0" checked>Compound names
+		<input type="checkbox" name="type1" value="1" checked>Kuniya
+		<br />
+		<input type="checkbox" name="type3" value="3" checked>Attributed names to Allah
+		<input type="checkbox" name="type4" value="4" checked>genitive (of/'s/verb)
+		<br />
+		<input type="checkbox" name="type2" value="2" checked>Arabic names
+		<input type="checkbox" name="type5" value="5" checked>Prophets
+		<input type="checkbox" name="type6" value="6" checked>Companions
+
+	<br/>
+	<hr>
+	<br/>
+	
+	<b>Gender :</b>
+		<input type="radio" name="gender" value="1" checked> Neutral
+		<input type="radio" name="gender" value="2" > Male
+		<input type="radio" name="gender" value="3"> Female
+	
+	<br/>
+	<hr>
+	<br/>
+	
+	<b>Juncture :</b>
+		<input type="radio" name="joint" value=" " checked> space
+		<input type="radio" name="joint" value="-" > -
+		<input type="radio" name="joint" value="_"> _
+		<input type="radio" name="joint" value=".">.
+
+	
+	<br/>
+	<hr>
+	<br/>
+
+	<b>Writing system :</b>
+		<input type="radio" name="lang" value="en" checked> English
+		<input type="radio" name="lang" value="fr"> French
+		<input type="radio" name="lang" value="ar"> Arabic
+	 
+	<br/>
+	<hr>
+	<br/>
+
+	<center>
+		<button id="generate">Generate</button>
+	</center>
+
+	<br/>
+	<hr>
+	
+	<div style="background:#eee; height:100px;">
+		<center><h2 id="generated" style="color:blue;padding:30px;"></h2></center>
+	</div>
+	
+	<hr>
+	<br/>	
+	
+	<center><h2 id="randomized"></h2></center>
+
+
+</div>
+
+
+
+</body>
+</html>
